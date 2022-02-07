@@ -6,13 +6,13 @@ int main() {
     pid_t pid = fork();
 
     if (pid == -1) {
-        printf("error occurred\n");
+        printf("error\n");
         return 1;
     } else if (pid == 0) {
-        printf("child working:\n");
+        printf("child work:\n");
         execl("/bin/ls", "/bin/ls", ".", NULL);
     } else {
-        printf("child %d working", pid);
+        printf("child %d work", pid);
     }
     
     return 0;
