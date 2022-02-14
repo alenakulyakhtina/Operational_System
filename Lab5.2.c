@@ -56,7 +56,7 @@ int main()
     }
   }
 
-  sleep(3);
+  sleep(2);
 
   if (result > 0) { 
     close(fd2[1]);
