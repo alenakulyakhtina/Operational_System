@@ -7,7 +7,7 @@
 // reading (pseudo_child)
 int main()
 {
-  int     fd, result;
+  int     fd;
 
   size_t  size;
   char    resstring[14];
