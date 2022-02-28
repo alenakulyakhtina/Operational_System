@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <fcntl.h>
 
-int main()
+int main(int argc, char **argv)
 {
   int pfd;
   int size = 0;
@@ -14,17 +15,12 @@ int main()
   if ((pfd = pipe(fd)) < 0) {
       printf("ERROR");
       exit(-1);
-
+    
   } else {
-    while (state == 1) {
-        if (write(fd[1], "p", 1) > 0) {
-          size++;
-        } else {
-          state = 1;
-        }
-    }
+     mkfifo("./some-fifo", 0644);
+    int fd = open("./some-fifo", O_RDWR);
   }
-  printf("%d\n", size);
+  printf("\nPipe size: %d", fcntl(fd, F_GETPIPE_SZ));
   
   return 0;
 }
