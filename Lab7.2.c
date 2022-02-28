@@ -35,7 +35,7 @@ int main()
     printf("%c", array[new]);
     new++;
   }
-  printf("OK");
+  printf("OK\n");
   if (shmdt(array) < 0) {
     printf("Can't detach shared memory\n");
     exit(-1);
