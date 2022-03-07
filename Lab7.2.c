@@ -8,6 +8,8 @@
 // 2
 int main()
 {
+  // Прошу прощения, у меня сейчас нет возможнсти запустить код, мой ноутбук сломался, и буквально сегодня (07.03.2022) я еду домой в другой город, чтобы взять второй.
+  // Поэтому очень надеюсь, что нигде не пропустила ";" или скобку:(
   char    *array;   
   int     shmid;     
   int     new = 0;   
@@ -40,6 +42,11 @@ int main()
     printf("Can't detach shared memory\n");
     exit(-1);
   }
+  
+  if (shmctl(shmid, IPC_RMID, NULL) < 0) {
+    printf("Can't delete shared memory\n");
+    exit(-1);
+    }
 
   return 0;
 }
