@@ -19,9 +19,9 @@ int main(int argc, char **argv)
     
   } else {
      mkfifo("./some-fifo", 0644);
-    int fd = open("./some-fifo", O_RDWR);
+     fd[1] = open("./some-fifo", O_RDWR);
   }
-  printf("\nPipe size: %d", fcntl(fd, F_GETPIPE_SZ));
+  printf("\nPipe size: %d", fcntl(fd[1], F_GETPIPE_SZ));
   
   return 0;
 }
