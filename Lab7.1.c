@@ -15,7 +15,7 @@ int main()
   key_t   key;
 
   
-  FILE *file = fopen("Lab7.txt","r");
+  FILE *file = fopen(pathname,"r");
   if ((key = ftok(pathname,0)) < 0) {
     printf("Can\'t generate key\n");
     exit(-1);
