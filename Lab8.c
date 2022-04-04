@@ -31,7 +31,7 @@ void *mythread(void *dummy)
 **/
 int main()
 {
-  pthread_t thid1, thid2 mythid;
+  pthread_t thid1, thid2, mythid;
   int       result;
   //
   // Try to create a new thread of execution associated with the mythread () function.
