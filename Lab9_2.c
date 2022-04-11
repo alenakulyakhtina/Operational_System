@@ -11,7 +11,7 @@ int main()
   int     *array;
   int     shmid;
   int     new = 1;
-  char    pathname[] = "07-3a.c";
+  char    pathname[] = "Lab9_1.c";
   key_t   key;
   long    i;
   int     semid;
