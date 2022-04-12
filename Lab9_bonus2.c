@@ -7,7 +7,7 @@
 int main(int argc, char *argv[], char *envp[])
 {
   int   semid;
-  char pathname[]="Lab9_bonus2.c";
+  char pathname[]="Lab9_bonus1.c";
   key_t key;
   struct sembuf mybuf;
 
