@@ -5,6 +5,24 @@
 #include <sys/sem.h>
 #include <sys/ipc.h>
 
+/* for in range N {
+  *check* {
+  Parent process:
+  A
+  Z
+  reading
+  } 
+  else {
+  Child process:
+  D
+  reading
+  writting
+  D
+  }
+}
+closing and exit
+ */
+
 int main()
 {
   int     fd[2], result;
@@ -50,7 +68,8 @@ int main()
         printf("Can\'t write all string to pipe\n");
         exit(-1);
       }
-    
+      
+      /* A */
       mybuf.sem_num = 0;
       mybuf.sem_op = 2;
       mybuf.sem_flg = 0;
@@ -58,6 +77,7 @@ int main()
         printf("Can\'t wait for condition\n");
         exit(-1);
       }
+      /* Z */
       mybuf.sem_num = 0;
       mybuf.sem_op = 0;
       mybuf.sem_flg = 0;
@@ -74,7 +94,8 @@ int main()
       }
       printf("Parent process read - successful; resstring: %s\n", resstring);
     } else {
-       /* Child process */
+      /* Child process */
+      /* D */
       mybuf.sem_num = 0;
       mybuf.sem_op = -1;
       mybuf.sem_flg = 0;
@@ -96,6 +117,7 @@ int main()
         printf("Can\'t write all string to pipe\n");
         exit(-1);
       }
+      /* D */
       mybuf.sem_num = 0;
       mybuf.sem_op = -1;
       mybuf.sem_flg = 0;
