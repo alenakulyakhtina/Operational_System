@@ -10,7 +10,7 @@
 int main(void)
 {
   int msqid;      // IPC descriptor for the message queue
-  char pathname[]="11-1a.c"; // The file name used to generate the key.
+  char pathname[]="Lab11.1a.c"; // The file name used to generate the key.
   key_t  key;     // IPC key
   int i,len;      // Cycle counter and the length of the informative part of the message
 
