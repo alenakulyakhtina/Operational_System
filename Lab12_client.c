@@ -44,12 +44,16 @@ int main(void)
   mybuf.info.ind = inf;
   len = sizeof(mybuf.info);
 
- if (msgsnd(msqid, (struct msgbuf *) &mybuf, len, 0) < 0) {
+  printf("Sending message to server\n");
+  
+  if (msgsnd(msqid, (struct msgbuf *) &mybuf, len, 0) < 0) {
         printf("Can't send message!\n");
         msgctl(msqid, IPC_RMID, (struct msqid_ds *) NULL);
         exit(-1);
-    }
-
+  }
+  
+  printf("Sent message\n");
+  
   maxlen = sizeof(mybuf.info);
   if (len = msgrcv(msqid, (struct msgbuf *) &mybuf, maxlen, getpid(), 0) < 0) {
       printf("Can't recive message!\n");
@@ -61,4 +65,3 @@ int main(void)
 
   return 0;
 }
-
