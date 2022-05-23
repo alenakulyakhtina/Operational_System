@@ -37,19 +37,24 @@ int main(void)
 
   /* Send information */
 
+  maxlen = sizeof(mybuf.info);
+  
   while (1) {
-    maxlen = sizeof(mybuf.info);
-    if (len = msgrcv(msqid, (struct msgbuf *) &mybuf, maxlen, 1, 0) < 0) {
+    printf("waiting for message!\n");
+    if (msgrcv(msqid, (struct msgbuf *) &mybuf, maxlen, 1, 0) < 0) {
       printf("Can\'t send message!\n");
       exit(-1);
     }
-    mybuf.mtype = mybuf.info.ind;
+    
+    printf("Got message from %d %f\n", mybuf.info.pid, mybuf.info.ind);
+    
+    mybuf.mtype = mybuf.info.pid;
     mybuf.info.ind = mybuf.info.ind * mybuf.info.ind;
-    len = sizeof(mybuf.info);
-    if (msgsnd(msqid, (struct msgbuf *) &mybuf, len, 0) < 0) {
+    if (msgsnd(msqid, (struct msgbuf *) &mybuf, maxlen, 0) < 0) {
           printf("Can't send message!\n");
           msgctl(msqid, IPC_RMID, (struct msqid_ds *) NULL);
           exit(-1);
+  	}
   }
   return 0;
 }
