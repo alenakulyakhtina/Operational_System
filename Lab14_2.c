@@ -6,6 +6,13 @@
 #include <sys/ipc.h>
 #include <signal.h>
 
+void my_handler(int nsig) {
+  if (nsig == 2)
+    printf("It's CTRL-C: %d\n", nsig);
+  else if (nsig == 3)
+    printf("It's CTRL-4: %d\n", nsig);
+}
+
 int main(void) {
   (void)signal(SIGINT, my_handler);
   (void)signal(SIGQUIT, my_handler);
@@ -13,11 +20,4 @@ int main(void) {
   while(1);
 
   return 0;
-}
-
-void my_handler(int nsig) {
-  if (nsig == 2)
-    printf("It's CTRL-C: %d\n", nsig);
-  else if (nsig == 3)
-    printf("It's CTRL-4: %d\n", nsig);
 }
